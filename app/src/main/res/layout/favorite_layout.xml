@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fav_heading"
+        android:text="@string/fav_heading"
+        android:textStyle="bold"
+        android:textSize="@dimen/heading_textsize"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:padding="@dimen/fav_heart_padding" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fav_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:scrollbarStyle="outsideOverlay"
+        android:paddingTop="@dimen/list_side_margin"
+        android:paddingLeft="@dimen/list_side_margin"
+        android:paddingRight="@dimen/list_side_margin"
+        android:paddingBottom="@dimen/list_side_margin"
+        android:contentDescription="@string/Fav_Restaurant_List" />
+
+</LinearLayout>
