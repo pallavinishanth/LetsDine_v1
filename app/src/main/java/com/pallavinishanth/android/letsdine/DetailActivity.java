@@ -87,7 +87,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.res_detail_view);
 
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
 
@@ -100,28 +100,28 @@ public class DetailActivity extends AppCompatActivity {
 
 //        Log.v(LOG_TAG, "Place ID " + placeID);
 
-        website_view = (TextView) findViewById(R.id.website_url);
-        hours_view = (TextView) findViewById(R.id.hours);
-        address = (TextView) findViewById(R.id.address);
-        backdrop = (ImageView) findViewById(R.id.res_backdrop);
-        photoHeading = (TextView) findViewById(R.id.photos_heading);
-        reviewHeading = (TextView) findViewById(R.id.Reviews_heading);
-        mapImage = (ImageView) findViewById(R.id.map_image);
-        phoneview = (TextView) findViewById(R.id.phoneNum);
-        phoneicon = (ImageView) findViewById(R.id.phoneIcon);
-        fav_fab = (FloatingActionButton) findViewById(R.id.fav_fab);
+        website_view = findViewById(R.id.website_url);
+        hours_view = findViewById(R.id.hours);
+        address = findViewById(R.id.address);
+        backdrop = findViewById(R.id.res_backdrop);
+        photoHeading = findViewById(R.id.photos_heading);
+        reviewHeading = findViewById(R.id.Reviews_heading);
+        mapImage = findViewById(R.id.map_image);
+        phoneview = findViewById(R.id.phoneNum);
+        phoneicon = findViewById(R.id.phoneIcon);
+        fav_fab = findViewById(R.id.fav_fab);
 
 
-        photoRecyclerView = (RecyclerView) findViewById(R.id.photos_recycler_view);
+        photoRecyclerView = findViewById(R.id.photos_recycler_view);
         photoRecyclerView.setHasFixedSize(true);
         photoLayoutManager = new LinearLayoutManager(DetailActivity.this,
                 LinearLayoutManager.HORIZONTAL, false);
         photoRecyclerView.setLayoutManager(photoLayoutManager);
 
-        reviewRecyclerView = (RecyclerView) findViewById(R.id.reviews_recycler_view);
+        reviewRecyclerView = findViewById(R.id.reviews_recycler_view);
         reviewRecyclerView.setHasFixedSize(true);
         reviewLayoutManager = new LinearLayoutManager(DetailActivity.this,
-                LinearLayoutManager.VERTICAL, false);
+                RecyclerView.VERTICAL, false);
         reviewRecyclerView.setLayoutManager(reviewLayoutManager);
 
         if (savedInstanceState != null) {
@@ -203,7 +203,7 @@ public class DetailActivity extends AppCompatActivity {
             }
 
             CollapsingToolbarLayout collapsingToolbar =
-                    (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+                    findViewById(R.id.collapsing_toolbar);
 
             if (detail_result.getname() != null) {
 
@@ -298,10 +298,12 @@ public class DetailActivity extends AppCompatActivity {
                 ResContract.ResEntry.COLUMN_PLACE_ID + "=" + "'" + place_id + "'",
                 null, null, null);
 
-        if (cursor.getCount() == 0)
-            return false;
-        else
-            return true;
+        int favResCount = cursor.getCount();
+        cursor.close();
+
+        return favResCount != 0;
+
+
     }
 
     public boolean insertFavResData(String place_id, String name, String vicinity) {
@@ -340,14 +342,7 @@ public class DetailActivity extends AppCompatActivity {
 
 //        Log.v(LOG_TAG, "Deleted Res Data " + placeid + "rows " + no_rows_deleted);
 
-        if (no_rows_deleted > 0) {
-
-            return true;
-
-        } else {
-
-            return false;
-        }
+        return no_rows_deleted > 0;
 
     }
 
@@ -456,7 +451,7 @@ public class DetailActivity extends AppCompatActivity {
                 }
 
                 CollapsingToolbarLayout collapsingToolbar =
-                        (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+                        findViewById(R.id.collapsing_toolbar);
 
                 if (detail_result.getname() != null) {
 

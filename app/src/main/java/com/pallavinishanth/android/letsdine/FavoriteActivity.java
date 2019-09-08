@@ -40,10 +40,10 @@ public class FavoriteActivity extends AppCompatActivity
 
         getSupportLoaderManager().initLoader(0, null, this);
 
-        favRecyclerView = (RecyclerView) findViewById(R.id.fav_recycler_view);
+        favRecyclerView = findViewById(R.id.fav_recycler_view);
         favRecyclerView.setHasFixedSize(true);
         favLayoutManager = new LinearLayoutManager(FavoriteActivity.this,
-                LinearLayoutManager.VERTICAL, false);
+                RecyclerView.VERTICAL, false);
         favRecyclerView.setLayoutManager(favLayoutManager);
 
     }
@@ -83,7 +83,7 @@ public class FavoriteActivity extends AppCompatActivity
                 i++;
 
             } while (cursor.moveToNext());
-            cursor.close();
+            //cursor.close();
 
             favAdapter = new FavoriteAdapter(getBaseContext(), res_names, res_address);
             favRecyclerView.setAdapter(favAdapter);
@@ -103,8 +103,9 @@ public class FavoriteActivity extends AppCompatActivity
         } else {
 
             Toast.makeText(FavoriteActivity.this, R.string.no_fav, Toast.LENGTH_SHORT).show();
-            cursor.close();
+            //cursor.close();
         }
+
     }
 
     @Override
